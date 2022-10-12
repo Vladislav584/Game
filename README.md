@@ -2,7 +2,6 @@
 ## Запускаем сервис:
 
 1. Докер файл docker-compose.yml находится в директории \src\main\resources\docker
-- docker-compose build
 - docker-compose up
 2. Упаковываем проект
 - mvn clean package
