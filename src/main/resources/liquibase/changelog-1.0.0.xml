@@ -1,0 +1,65 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <changeSet id="1" author="Vladislav Kuznetsov">
+        <createTable tableName="USERS">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(64)">
+                <constraints nullable="false" unique="true" uniqueConstraintName="uq_name"/>
+            </column>
+            <column name="wallet" type="VARCHAR(255)"/>
+            <column name="clan_id" type="INT"/>
+        </createTable>
+
+        <createTable tableName="CLAN">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(64)">
+                <constraints nullable="false" unique="true" uniqueConstraintName="uq_name"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="TRANSACTION">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="user_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="clan_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="diff_gold_value" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="gold_value" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="current_timestamp()" name="create_date" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+<!-- если надо чтобы удалялись юзеры при удалении клана - необходимо добавить данный констрейнт. Я считаю это излишним -->
+<!--        <addForeignKeyConstraint baseColumnNames="clan_id" baseTableName="USERS"-->
+<!--                                 constraintName="fk_users_clan" deferrable="false" initiallyDeferred="false"-->
+<!--                                 onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="id"-->
+<!--                                 referencedTableName="CLAN"/>-->
+
+        <addForeignKeyConstraint baseColumnNames="clan_id" baseTableName="TRANSACTION"
+                                 constraintName="fk_transaction_clan" deferrable="false" initiallyDeferred="false"
+                                 onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="id"
+                                 referencedTableName="CLAN"/>
+
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="TRANSACTION"
+                                 constraintName="fk_transaction_users" deferrable="false" initiallyDeferred="false"
+                                 onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="id"
+                                 referencedTableName="USERS"/>
+    </changeSet>
+
+</databaseChangeLog>
