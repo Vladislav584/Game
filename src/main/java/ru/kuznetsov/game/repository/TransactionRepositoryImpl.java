@@ -23,7 +23,7 @@ import java.util.List;
 @RequiredArgsConstructor(onConstructor = @__(@Inject))
 public class TransactionRepositoryImpl implements TransactionRepository {
 
-    private static final Logger log = LoggerFactory.getLogger(UserController.class);
+    private static final Logger log = LoggerFactory.getLogger(TransactionRepositoryImpl.class);
     private final DataSource dataSource;
     private final ClanService clanService;
     private final UserService userService;

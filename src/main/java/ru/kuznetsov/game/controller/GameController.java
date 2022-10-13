@@ -22,7 +22,7 @@ import static ru.kuznetsov.game.util.Constants.OBJECT_MAPPER;
 @RequiredArgsConstructor(onConstructor = @__(@Inject))
 public class GameController {
 
-    private static final Logger log = LoggerFactory.getLogger(UserController.class);
+    private static final Logger log = LoggerFactory.getLogger(GameController.class);
     private final ClanService clanService;
     private final UserAddGoldService userAddGoldService;
     private final TransactionService transactionService;

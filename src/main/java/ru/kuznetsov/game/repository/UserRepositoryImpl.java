@@ -20,7 +20,7 @@ import java.util.Map;
 @RequiredArgsConstructor(onConstructor = @__(@Inject))
 public class UserRepositoryImpl implements UserRepository {
 
-    private static final Logger log = LoggerFactory.getLogger(UserController.class);
+    private static final Logger log = LoggerFactory.getLogger(UserRepositoryImpl.class);
 
     private final DataSource dataSource;
     private final ClanService clanService;

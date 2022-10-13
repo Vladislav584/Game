@@ -19,7 +19,7 @@ import java.util.Map;
 @Singleton
 @RequiredArgsConstructor(onConstructor = @__(@Inject))
 public class ClanRepositoryImpl implements ClanRepository {
-    private static final Logger log = LoggerFactory.getLogger(UserController.class);
+    private static final Logger log = LoggerFactory.getLogger(ClanRepositoryImpl.class);
 
     private final DataSource dataSource;
 
